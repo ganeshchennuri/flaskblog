@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FlaskBlog
+{% endblock %}
+
+{% block subcontent %}
+    <h1 align=center>Register</h1>
+    <br>
+    <form class="form-horizontal" method="POST">
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">First Name:</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="first_name" placeholder="First Name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Last Name:</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="last_name" placeholder="Last Name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Username:</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="username">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Email:</label>
+            <div class="col-sm-5">
+                <input type="email" class="form-control" name="email" placeholder="email">
+            </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Password:</label>
+          <div class="col-sm-5">
+            <input type="password" class="form-control" name="password" placeholder="***************">
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Confirm Password:</label>
+            <div class="col-sm-5">
+              <input type="password" class="form-control" name="confirm_password" placeholder="***************">
+            </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-5">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+{% endblock %}
