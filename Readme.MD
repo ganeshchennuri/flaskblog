@@ -1,5 +1,6 @@
-# Blog using Flask-MySQL
-
+# Blog using Python Flask Framework
+    - HTML, Bootstrap, MYSQL, pyyaml
+    
 ## DATABASE Queries
 
 - CREATE DATABASE flskblog_db;

@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    FlaskBlog
+    MyBlogs
 {% endblock %}
 
 {% block subcontent %}
-    <h1>My Blogs</h1>
+    <div class="text-center">
+        <h1>My Blogs</h1>
+    </div>
+    <hr>
+    {% if my_blogs %}
+        <tr>
+        {% for my_blog in my_blogs %}
+            <td><h3><a href="/blogs/{{my_blog['blogid']}}"></a>{{my_blog['title']}}</h3></td>
+            <td><a href="/edit-blog/{{my_blog['blogid']}}"><button type="button" class="btn btn-info">Edit Blog</button></a></td>
+            <td><a href="/delete-blog/{{my_blog['blogid']}}"><button type="button" class="btn btn-danger">Delete Blog</button></a></td>
+        {% endfor %}
+        </tr>
+    {% else %}
+        <h3> You havent Written any blog</h3>
+    {% endif %}
 {% endblock %}

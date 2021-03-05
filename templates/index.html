@@ -5,18 +5,12 @@
 {% endblock %}
 
 {% block subcontent %}
-    <h1 align=center> FlaskBlog</h1>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="/">Flaskblog</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/write-blog">Write Blog</a></li>
-            <li><a href="/myblogs">Myblogs</a></li>
-            <li><a href="/about">About Us</a></li>
-          </ul>
-        </div>
-      </nav>
+  {% if blogs %}
+    {% for blog in blogs %}
+      <h3><a href="./blogs/{{ blog['blogid'] }}">{{blog['title']}}</a></h3>
+      <h5>Writen by {{blog['author']}}</h5>
+    {% endfor %}
+  {% else %}
+    <h3>No blogs have been writen</h3>
+  {% endif %}
 {% endblock %}

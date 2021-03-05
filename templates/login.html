@@ -1,24 +1,32 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Login Page
+Login
 {% endblock %}
 
 {% block subcontent %}
+    <hr>
+    <h1 style="padding-left:25%">User Login</h1>
     <br>
-    <h1 align='center'>Login</h1>
-    <br>
-    <form method="POST">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input id="email" type="text" class="form-control" name="username" placeholder="Username">
+    <form class="form-horizontal" method="POST">
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Username:</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="username">
+            </div>
         </div>
 
-        <div class="input-group">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input id="password" type="password" class="form-control" name="password" placeholder="************">
+        <div class="form-group">
+            <label class="control-label col-sm-2">Password:</label>
+            <div class="col-sm-5">
+              <input type="password" class="form-control" name="password" placeholder="***************">
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <div class="col-sm-offset-3 col-sm-5">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        
     </form>
 {% endblock %}
