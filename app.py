@@ -4,6 +4,8 @@ from flask_bootstrap import Bootstrap
 from flask_mysqldb import MySQL
 import yaml
 from flask_ckeditor import CKEditor
+import random
+import string
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -11,12 +13,12 @@ CKEditor(app)
 
 #Loading db config from db.yaml file
 db = yaml.safe_load(open('db.yaml','r'))
-
+random_string = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(25))
 app.config['MYSQL_HOST'] = db['mysql_host']
 app.config['MYSQL_USER'] = db['mysql_user'] 
 app.config['MYSQL_PASSWORD'] = db['mysql_password']
 app.config['MYSQL_DB'] = db['mysql_db']
-app.config['SECRET_KEY'] = 'noneedtodisclosekey'
+app.config['SECRET_KEY'] = random_string
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 mysql = MySQL(app)
@@ -85,8 +87,8 @@ def login():
             else:
                 flash("Username not found. Try Again.", "danger")
                 return render_template('login.html')
-    cur.close()
-    flash("Enter Correct Login credentials","danger")
+        cur.close()
+        flash("Enter Correct Login credentials","danger")
     return render_template('login.html')
 
 @app.route('/write-blog',methods=['GET','POST'])
@@ -162,4 +164,4 @@ def about():
     return render_template('about.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False,host="localhost")
