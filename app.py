@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask import Flask, render_template, redirect, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap
 from flask_mysqldb import MySQL
@@ -83,11 +83,12 @@ def login():
                     return redirect('/')
                 else:
                     flash("Enter correct Password","danger")
+                    cur.close()
                     return render_template('login.html')
             else:
-                flash("Username not found. Try Again.", "danger")
+                flash("Enter correct Username. Try Again.", "danger")
+                cur.close()
                 return render_template('login.html')
-        cur.close()
         flash("Enter Correct Login credentials","danger")
     return render_template('login.html')
 
@@ -114,6 +115,7 @@ def blogs(id):
     if result_value>0:
         blog = cur.fetchone()
         return render_template('blogs.html',blog=blog)
+    cur.close()
     return "<h1>Blog Not Found</h1>"
 
 @app.route('/myblogs')
@@ -141,15 +143,16 @@ def edit_blog(id):
     cur = mysql.connection.cursor()
     result_value = cur.execute(f"SELECT * FROM blog WHERE blogid={id}")
     blog = cur.fetchone()
-    return render_template('edit-blog.html',blog=blog)
     cur.close()
-
+    return render_template('edit-blog.html',blog=blog)
+    
 @app.route('/delete-blog/<int:id>')
 def delete_blog(id):
     cur = mysql.connection.cursor()
     cur.execute(f"DELETE FROM blog WHERE blogid={id}")
     mysql.connection.commit()
     flash("Blog Post has been successfully Deleted","success")
+    cur.close()
     return redirect('/myblogs')
 
 @app.route('/logout')
