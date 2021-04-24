@@ -20,9 +20,11 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False    #SQLAlchemy already have
 random_string = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(25))
 app.secret_key = random_string
 
+'''
 @app.before_first_request
 def create_tables():
     db.create_all()
+'''
 
 @app.route('/', methods = ['GET'])
 def index():
