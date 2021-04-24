@@ -1,4 +1,0 @@
-mysql_host: 'localhost'
-mysql_user: MySQL Username
-mysql_password: MySQL Password
-mysql_db: 'flskblog_db'
